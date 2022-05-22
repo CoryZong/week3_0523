@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+.homepage {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.homepage .table table,
+.homepage .table tr,
+.homepage .table th,
+.homepage .table td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.homepage .table td {
+  padding: 0.5rem 2rem;
+}
+/*# sourceMappingURL=style.css.map */

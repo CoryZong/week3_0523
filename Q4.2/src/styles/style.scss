@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+.homepage {
+  display: grid;
+  place-items: center;
+  .table {
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    td {
+      padding: 0.5rem 2rem;
+    }
+  }
+}
