@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Data } from "../api";
 
 const Homepage = () => {
@@ -8,15 +8,29 @@ const Homepage = () => {
   async function getData() {
     let result = await Data();
     try {
+      setList(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function searchData() {
+    let result = await Data();
+    try {
       let resultFilter = result.filter((e) => {
         return e.name == query;
       });
-      console.log(resultFilter);
       setList(resultFilter);
     } catch (error) {
       console.log(error);
     }
   }
+  useEffect(() => {
+    setTimeout(getData, 150);
+  }, []);
+  useEffect(() => {
+    setTimeout(searchData, 100);
+  }, [query]);
 
   return (
     <div className="homepage">
@@ -28,7 +42,6 @@ const Homepage = () => {
             setQuery(e.target.value);
           }}
         />
-        <button onClick={getData}>Search</button>
       </div>
 
       <div className="table">
