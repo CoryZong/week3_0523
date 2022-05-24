@@ -1,10 +1,7 @@
 import React from "react";
-import {
-  useChangePeopleData,
-  usePeopleData,
-} from "../Contexter";
+import { useChangePeopleData, usePeopleData } from "../Contexter";
 
-export default function card() {
+export default function Card() {
   const people = usePeopleData();
   const changePeople = useChangePeopleData();
 

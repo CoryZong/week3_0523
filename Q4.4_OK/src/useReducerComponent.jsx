@@ -5,9 +5,11 @@ export const initialState = {
 
 export function reducer(state, action) {
   switch (action.type) {
-    case "check":
-      return sessionStorage.setItem("name", action.payload.name), sessionStorage.setItem("token", action.payload.token);
-    case "logout":
+    case "TokenCheck":
+      if (sessionStorage.getItem("token") == "AOQGKICVOGJANGO") {
+        return (window.location.href = "/admin");
+      }
+    case "Logout":
       return sessionStorage.clear();
     default:
       return state;

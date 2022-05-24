@@ -1,6 +1,6 @@
 import React from "react";
 
-export const TaiwanDistructs = () => {
+export const TaiwanDistricts = () => {
   const list = [
     {
       districts: [

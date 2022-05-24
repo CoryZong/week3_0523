@@ -1,5 +1,9 @@
 import React from "react";
-
-export const dashboard = () => {
-  return <div>dashboard</div>;
-};
+import Card from "./card";
+export default function Dashboard() {
+  return (
+    <div>
+      <Card />
+    </div>
+  );
+}

@@ -8,23 +8,25 @@ const Login = () => {
   async function getdata() {
     const result = await memberLogin();
     try {
-      dispatch({ type: "check", payload: result });
+      sessionStorage.setItem("name", result.name);
+      sessionStorage.setItem("token", result.token);
+      dispatch({ type: "UpdateState", payload: result });
     } catch (error) {
       console.log(error);
     }
   }
 
-  useEffect(() => {
-    if (sessionStorage.getItem("token") == "AOQGKICVOGJANGO") {
-      window.location.href = "/admin";
-    }
-  }, [getdata]);
+  useEffect(() => getdata, []);
+
+  function loginHandler() {
+    dispatch({ type: "TokenCheck" });
+  }
 
   return (
     <div className="login">
       <h1>Login</h1>
       <div className="btnDiv">
-        <button onClick={getdata}>Login</button>
+        <button onClick={loginHandler}>Login</button>
       </div>
     </div>
   );

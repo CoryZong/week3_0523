@@ -1,11 +1,11 @@
 import React from "react";
-import Card from "./card";
+import Dashboard from "./dashboard";
 import { Contexter } from "../Contexter";
 
-export default function home() {
+export default function Home() {
   return (
     <Contexter>
-      <Card />
+      <Dashboard />
     </Contexter>
   );
 }

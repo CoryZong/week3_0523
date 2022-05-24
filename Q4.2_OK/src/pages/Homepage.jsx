@@ -5,29 +5,18 @@ const Homepage = () => {
   const [list, setList] = useState([]);
   const [query, setQuery] = useState("");
 
-  async function getData() {
-    let result = await Data();
-    try {
-      setList(result);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   async function searchData() {
     let result = await Data();
     try {
       let resultFilter = result.filter((e) => {
         return e.name == query;
       });
-      setList(resultFilter);
+      resultFilter.length !== 0 ? setList(resultFilter) : setList(result);
     } catch (error) {
       console.log(error);
     }
   }
-  useEffect(() => {
-    setTimeout(getData, 150);
-  }, []);
+
   useEffect(() => {
     setTimeout(searchData, 100);
   }, [query]);

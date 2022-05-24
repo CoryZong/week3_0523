@@ -2,27 +2,31 @@ import React, { useState } from "react";
 
 export default function Table() {
   const [list, setList] = useState([
-    { number: 1, name: "Tris", checked: false },
-    { number: 2, name: "Nono", checked: false },
-    { number: 3, name: "Eric", checked: false },
-    { number: 4, name: "Patrick", checked: false },
-    { number: 5, name: "Yue", checked: false },
+    { number: 1, name: "Tris", checked: false, temp: "" },
+    { number: 2, name: "Nono", checked: false, temp: "" },
+    { number: 3, name: "Eric", checked: false, temp: "" },
+    { number: 4, name: "Patrick", checked: false, temp: "" },
+    { number: 5, name: "Yue", checked: false, temp: "" },
   ]);
-
+  const [isEdit, setEdit] = useState(null);
   const [temp, setTemp] = useState(36.5);
 
   function handleShowInput(id) {
-    let tempInput = document.querySelectorAll("input");
-    const current = list.find((item) => id === item.number);
-    current.checked = true;
-    tempInput[id - 1].style = "display: inline-block";
+    setEdit(id);
+    setTemp(36.5);
   }
 
-  function keydownHandler(e) {
+  function keydownHandler(e, number) {
     if (e.key == "Enter") {
-      e.nativeEvent.path[0].style = "display: none";
-      e.nativeEvent.path[1].children[0].innerText = temp;
-      setList([...list]);
+      const array = list.map((item) => {
+        if (item.number === number) {
+          item.temp = temp;
+          item.checked = true;
+        }
+        return item;
+      });
+      setList(array);
+      setEdit(null);
     }
   }
 
@@ -46,30 +50,9 @@ export default function Table() {
                   <td>{element.number}</td>
                   <td>{element.name}</td>
                   <td>
-                    <div className="tempDiv">
-                      <p></p>
-                      <input
-                        type="tel"
-                        defaultValue={temp}
-                        onChange={(e) =>
-                          setTemp(e.target.value)
-                        }
-                        onKeyDown={keydownHandler}
-                      />
-                    </div>
+                    <div className="tempDiv">{isEdit !== element.number ? <p>{element.temp}</p> : <input type="tel" defaultValue={temp} onChange={(e) => setTemp(e.target.value)} onKeyDown={(e) => keydownHandler(e, element.number)} />}</div>
                   </td>
-                  <td>
-                    {element.checked ? (
-                      "V"
-                    ) : (
-                      <button
-                        onClick={() =>
-                          handleShowInput(element.number)
-                        }>
-                        簽到
-                      </button>
-                    )}
-                  </td>
+                  <td>{element.checked ? "V" : <button onClick={() => handleShowInput(element.number)}>簽到</button>}</td>
                 </tr>
               ))}
           </tbody>
