@@ -6,6 +6,7 @@ export default function App() {
   const citySelecter = useRef();
   const districtSelecter = useRef();
 
+  const [districtList, setDistrictList] = useState(list);
   const [zip, setZip] = useState(100);
 
   function cityFilter() {

@@ -4,7 +4,7 @@ import { Data } from "../api";
 const Homepage = () => {
   const [list, setList] = useState([]);
   const [query, setQuery] = useState("");
-
+//indexOf
   async function searchData() {
     let result = await Data();
     try {

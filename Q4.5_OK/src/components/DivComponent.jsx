@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import RandomComponent from "./RandomComponent";
 
 const DivComponent = React.memo(() => {
   const randomArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
@@ -10,7 +11,6 @@ const DivComponent = React.memo(() => {
     { id: 4, color: "", lock: true },
   ]);
   const changeColor = (id) => {
-    console.log("id");
     if (divColor[id].lock) {
       let colorStr = "";
       for (let i = 0; i < 6; i++) {
@@ -44,7 +44,7 @@ const DivComponent = React.memo(() => {
           divColor.map((e) => {
             return (
               <div key={e.id} className="color" onClick={() => changeColor(e.id)} style={{ backgroundColor: e.color }}>
-                <p>{Math.random().toFixed(2)}</p>
+                <RandomComponent />
                 <button onClick={() => buttonHandler(e.id)}>
                   <i className={e.lock ? "fa-solid fa-lock-open" : "fa-solid fa-lock"}></i>
                 </button>
